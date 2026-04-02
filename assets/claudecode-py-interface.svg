@@ -1,0 +1,50 @@
+<svg width="1280" height="860" viewBox="0 0 1280 860" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="80" y1="30" x2="1160" y2="830" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0B1220"/>
+      <stop offset="0.5" stop-color="#111827"/>
+      <stop offset="1" stop-color="#0F3B5F"/>
+    </linearGradient>
+    <linearGradient id="border" x1="150" y1="70" x2="1110" y2="790" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#60A5FA"/>
+      <stop offset="1" stop-color="#22D3EE"/>
+    </linearGradient>
+    <filter id="shadow" x="0" y="0" width="1280" height="860" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="24" stdDeviation="24" flood-color="#020617" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+
+  <rect width="1280" height="860" rx="36" fill="#07111E"/>
+  <rect x="36" y="36" width="1208" height="788" rx="28" fill="url(#bg)" filter="url(#shadow)"/>
+  <rect x="36" y="36" width="1208" height="788" rx="28" stroke="url(#border)" stroke-opacity="0.3" stroke-width="2"/>
+
+  <rect x="36" y="36" width="1208" height="64" rx="28" fill="#050B15"/>
+  <circle cx="86" cy="68" r="10" fill="#FB7185"/>
+  <circle cx="118" cy="68" r="10" fill="#FBBF24"/>
+  <circle cx="150" cy="68" r="10" fill="#34D399"/>
+  <text x="190" y="75" fill="#D1D5DB" font-size="24" font-family="Arial, Helvetica, sans-serif">claudecode-py • interactive REPL</text>
+
+  <rect x="78" y="142" width="1124" height="116" rx="20" fill="#08101C" stroke="#20324A"/>
+  <text x="108" y="184" fill="#7DD3FC" font-size="22" font-family="Arial, Helvetica, sans-serif">Session</text>
+  <text x="108" y="220" fill="#E5E7EB" font-size="20" font-family="Courier New, monospace">$ claudecode chat --cwd ./demo-project</text>
+  <text x="108" y="250" fill="#94A3B8" font-size="19" font-family="Courier New, monospace">Workspace: /path/to/demo-project   Model: gpt-4.1-mini</text>
+
+  <rect x="78" y="288" width="1124" height="448" rx="24" fill="#040A13" stroke="#1E293B" stroke-width="2"/>
+  <text x="106" y="336" fill="#93C5FD" font-size="21" font-family="Arial, Helvetica, sans-serif">Conversation</text>
+
+  <text x="106" y="390" fill="#60A5FA" font-size="22" font-family="Courier New, monospace">you&gt; summarize this repository and inspect the project structure</text>
+
+  <rect x="96" y="426" width="1088" height="54" rx="14" fill="#0A1524"/>
+  <text x="120" y="460" fill="#FDE68A" font-size="21" font-family="Courier New, monospace">tool  list_files(path=&quot;.&quot;)</text>
+
+  <rect x="96" y="498" width="1088" height="54" rx="14" fill="#0A1524"/>
+  <text x="120" y="532" fill="#FDE68A" font-size="21" font-family="Courier New, monospace">tool  read_file(path=&quot;README.md&quot;)</text>
+
+  <rect x="96" y="570" width="1088" height="128" rx="18" fill="#09111F"/>
+  <text x="120" y="608" fill="#F5F5F4" font-size="21" font-family="Courier New, monospace">assistant&gt; This project is a teaching-oriented coding agent CLI.</text>
+  <text x="120" y="642" fill="#CBD5E1" font-size="20" font-family="Courier New, monospace">It uses a minimal agent loop, an OpenAI-compatible backend,</text>
+  <text x="120" y="676" fill="#CBD5E1" font-size="20" font-family="Courier New, monospace">workspace-safe file tools, and approval-gated shell or write actions.</text>
+
+  <rect x="78" y="760" width="1124" height="34" rx="17" fill="#071423"/>
+  <text x="108" y="783" fill="#67E8F9" font-size="18" font-family="Arial, Helvetica, sans-serif">Inspired by Claude Code • built with Typer + Rich + OpenAI tool calling</text>
+</svg>

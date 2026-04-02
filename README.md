@@ -42,6 +42,10 @@ If you want to understand the backbone behind tools like Claude Code, this repo 
 
 ## Demo
 
+<p align="center">
+  <img src="./assets/claudecode-py-interface.svg" alt="claudecode-py terminal interface preview" width="100%" />
+</p>
+
 ```text
 $ claudecode chat --cwd .
 claudecode-py
