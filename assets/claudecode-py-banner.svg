@@ -22,26 +22,27 @@
   <rect x="72" y="72" width="140" height="36" rx="18" fill="#E0F2FE" fill-opacity="0.14"/>
   <text x="142" y="95" text-anchor="middle" fill="#E0F2FE" font-size="18" font-family="Arial, Helvetica, sans-serif">Python Agent CLI</text>
 
-  <text x="72" y="176" fill="white" font-size="64" font-weight="700" font-family="Arial, Helvetica, sans-serif">claudecode-py</text>
-  <text x="72" y="222" fill="#BFDBFE" font-size="28" font-family="Arial, Helvetica, sans-serif">A minimal Claude Code style coding agent for learning and portfolio demos</text>
+  <text x="72" y="170" fill="white" font-size="64" font-weight="700" font-family="Arial, Helvetica, sans-serif">claudecode-py</text>
+  <text x="72" y="214" fill="#BFDBFE" font-size="26" font-family="Arial, Helvetica, sans-serif">A minimal Claude Code style coding agent</text>
+  <text x="72" y="246" fill="#BFDBFE" font-size="26" font-family="Arial, Helvetica, sans-serif">for learning and portfolio demos</text>
 
-  <rect x="72" y="262" width="196" height="42" rx="21" fill="#0B1220" stroke="#60A5FA" stroke-opacity="0.55"/>
-  <text x="170" y="289" text-anchor="middle" fill="#E2E8F0" font-size="18" font-family="Arial, Helvetica, sans-serif">Agent Loop</text>
+  <rect x="72" y="284" width="196" height="42" rx="21" fill="#0B1220" stroke="#60A5FA" stroke-opacity="0.55"/>
+  <text x="170" y="311" text-anchor="middle" fill="#E2E8F0" font-size="18" font-family="Arial, Helvetica, sans-serif">Agent Loop</text>
 
-  <rect x="286" y="262" width="196" height="42" rx="21" fill="#0B1220" stroke="#60A5FA" stroke-opacity="0.55"/>
-  <text x="384" y="289" text-anchor="middle" fill="#E2E8F0" font-size="18" font-family="Arial, Helvetica, sans-serif">Tool Dispatch</text>
+  <rect x="286" y="284" width="196" height="42" rx="21" fill="#0B1220" stroke="#60A5FA" stroke-opacity="0.55"/>
+  <text x="384" y="311" text-anchor="middle" fill="#E2E8F0" font-size="18" font-family="Arial, Helvetica, sans-serif">Tool Dispatch</text>
 
-  <rect x="500" y="262" width="196" height="42" rx="21" fill="#0B1220" stroke="#60A5FA" stroke-opacity="0.55"/>
-  <text x="598" y="289" text-anchor="middle" fill="#E2E8F0" font-size="18" font-family="Arial, Helvetica, sans-serif">Human Approval</text>
+  <rect x="500" y="284" width="196" height="42" rx="21" fill="#0B1220" stroke="#60A5FA" stroke-opacity="0.55"/>
+  <text x="598" y="311" text-anchor="middle" fill="#E2E8F0" font-size="18" font-family="Arial, Helvetica, sans-serif">Human Approval</text>
 
-  <rect x="714" y="262" width="264" height="42" rx="21" fill="#0B1220" stroke="#60A5FA" stroke-opacity="0.55"/>
-  <text x="846" y="289" text-anchor="middle" fill="#E2E8F0" font-size="18" font-family="Arial, Helvetica, sans-serif">OpenAI Compatible Backend</text>
+  <rect x="714" y="284" width="264" height="42" rx="21" fill="#0B1220" stroke="#60A5FA" stroke-opacity="0.55"/>
+  <text x="846" y="311" text-anchor="middle" fill="#E2E8F0" font-size="18" font-family="Arial, Helvetica, sans-serif">OpenAI Compatible Backend</text>
 
-  <path d="M780 118H1040C1060 118 1076 134 1076 154V252C1076 272 1060 288 1040 288H780C760 288 744 272 744 252V154C744 134 760 118 780 118Z" fill="#08101D" stroke="url(#accent)" stroke-width="2"/>
-  <text x="770" y="154" fill="#7DD3FC" font-size="18" font-family="Arial, Helvetica, sans-serif">Interactive REPL</text>
-  <text x="770" y="188" fill="#E2E8F0" font-size="18" font-family="Courier New, monospace">you&gt; summarize this repo</text>
-  <text x="770" y="218" fill="#67E8F9" font-size="18" font-family="Courier New, monospace">tool read_file</text>
-  <text x="770" y="248" fill="#E2E8F0" font-size="18" font-family="Courier New, monospace">assistant&gt; Here is the structure...</text>
+  <path d="M820 132H1110C1130 132 1146 148 1146 168V268C1146 288 1130 304 1110 304H820C800 304 784 288 784 268V168C784 148 800 132 820 132Z" fill="#08101D" stroke="url(#accent)" stroke-width="2"/>
+  <text x="814" y="168" fill="#7DD3FC" font-size="18" font-family="Arial, Helvetica, sans-serif">Interactive REPL</text>
+  <text x="814" y="202" fill="#E2E8F0" font-size="17" font-family="Courier New, monospace">you&gt; summarize this repo</text>
+  <text x="814" y="232" fill="#67E8F9" font-size="17" font-family="Courier New, monospace">tool list_files</text>
+  <text x="814" y="262" fill="#E2E8F0" font-size="17" font-family="Courier New, monospace">assistant&gt; inspecting files...</text>
 
   <text x="72" y="352" fill="#93C5FD" font-size="18" font-family="Arial, Helvetica, sans-serif">Built with Typer, Rich, and OpenAI tool calling</text>
 </svg>
