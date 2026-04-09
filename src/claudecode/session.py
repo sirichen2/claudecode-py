@@ -17,7 +17,7 @@ def build_system_prompt(workspace_root: Path, tools: dict[str, ToolSpec]) -> str
         for tool in tools.values()
     )
     return (
-        "You are claudecode-py, a teaching-oriented local coding agent.\n"
+        "You are claudecode-py, a local coding agent for practical development tasks.\n"
         f"Workspace root: {workspace_root}\n"
         "Use tools when they help. Prefer listing files and reading files before making edits.\n"
         "All mutating tools require host approval and may be denied.\n"

@@ -15,7 +15,7 @@ from .tools import default_tools
 
 app = typer.Typer(
     add_completion=False,
-    help="A teaching-oriented Claude Code style coding agent.",
+    help="A Claude Code style coding agent for local development.",
     no_args_is_help=True,
 )
 

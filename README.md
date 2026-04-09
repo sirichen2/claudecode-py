@@ -3,9 +3,9 @@
 </p>
 
 <p align="center">
-  <strong>A coding-agent harness for local development, built in Python.</strong>
+  <strong>A Python coding-agent CLI for local development.</strong>
   <br />
-  claudecode-py packages an interactive REPL, a transcript-driven session engine, a typed tool runtime, and an explicit permission boundary into a compact Claude Code style CLI.
+  <code>claudecode-py</code> combines an interactive REPL, a transcript-driven session engine, a typed tool runtime, and an explicit approval boundary into a compact Claude Code style command-line workflow.
 </p>
 
 <p align="center">
@@ -18,18 +18,26 @@
 
 ## Overview
 
-`claudecode-py` is a teaching-oriented coding agent that focuses on the core harness layers behind modern CLI agents:
+`claudecode-py` is a local coding-agent harness built for practical development workflows. It provides:
 
-- an interactive terminal entrypoint
-- a message-driven query loop
-- structured model tool calling
-- a registry-based tool runtime
-- human approval for side-effectful actions
-- workspace-bounded file and shell execution
+- an interactive terminal interface
+- a persistent session loop backed by an OpenAI-compatible model
+- structured tool calling for file and shell operations
+- explicit approval for mutating actions
+- workspace-bounded execution for safer local automation
 
-Rather than acting like a single script, the project is organized as a small agent runtime: user input enters a session engine, the engine delegates work through typed tools, tool results are fed back into the transcript, and the loop continues until the model reaches a final answer.
+Instead of wrapping a model in a thin script, the project is organized as a small agent runtime. User requests are appended to a transcript, the model can invoke typed tools, tool results are fed back into the conversation state, and the loop continues until the agent returns a final response.
 
-## Architecture Overview
+## Highlights
+
+- Interactive REPL with slash commands for day-to-day terminal use
+- Transcript-driven session engine with persistent conversation state
+- Typed tool definitions that serialize to OpenAI-compatible tool schemas
+- Built-in local development tools for listing files, reading files, editing files, and running shell commands
+- Human approval for side-effectful actions before execution
+- Workspace path guards to keep file operations scoped to the selected project root
+
+## Architecture
 
 ```mermaid
 flowchart TD
@@ -46,12 +54,12 @@ flowchart TD
     S --> R["Final Response Stream"]
 ```
 
-The runtime is intentionally split into four layers:
+The runtime is separated into four core layers:
 
-- Entry layer: `claudecode chat` boots an interactive REPL and handles slash commands.
-- Session layer: a persistent `SessionState` owns transcript history, system instructions, model calls, and the agent loop.
-- Tool layer: each tool exposes a schema, description, mutability flag, and execution function through a common contract.
-- Control layer: approval prompts, workspace path guards, and shell timeouts define the operational safety boundary.
+- Entry layer: `claudecode chat` starts the REPL and handles slash commands
+- Session layer: `SessionState` owns conversation history, model calls, and the agent loop
+- Tool layer: each tool exposes a schema, description, mutability flag, and execution function through a shared contract
+- Control layer: approval prompts, workspace path guards, and shell timeouts define the operational boundary
 
 ## Execution Model
 
@@ -59,11 +67,11 @@ At the center of the project is a transcript-driven agent loop:
 
 1. The user submits a prompt in the REPL.
 2. The session appends that message to the conversation state.
-3. The model receives the current transcript together with the registered tool schemas.
+3. The model receives the transcript together with the registered tool schemas.
 4. If the model emits tool calls, the runtime validates them, checks approvals when needed, executes the tools, and appends tool results back into the transcript.
-5. The loop continues until the model returns a final natural-language answer.
+5. The loop continues until the model returns a final natural-language response.
 
-This gives the project the same architectural shape as larger coding agents, while keeping the implementation readable enough to study end to end.
+This keeps the control flow explicit while preserving the interaction pattern expected from a modern coding agent.
 
 ## Query Lifecycle
 
@@ -79,7 +87,7 @@ user prompt
   -> final assistant response
 ```
 
-From an agent-systems perspective, the important detail is that tools are not side utilities around the model. They are part of the model loop itself. The transcript is the shared working memory, and tool results become first-class context for the next inference step.
+The transcript acts as the model-visible working memory, and tool results become first-class context for subsequent turns.
 
 ## Tool Runtime
 
@@ -95,13 +103,13 @@ ToolSpec(
 )
 ```
 
-That contract makes the runtime legible from both sides:
+That contract keeps the runtime consistent from both sides:
 
-- model-facing: each tool can be serialized into an OpenAI-compatible tool schema
+- model-facing: each tool can be serialized into an OpenAI-compatible schema
 - runtime-facing: each tool has a predictable execution path and result shape
 - control-facing: the system can distinguish read-only operations from mutating operations before execution
 
-Current built-in tools cover the essential coding-agent surface:
+Current built-in tools:
 
 - `list_files`
 - `read_file`
@@ -109,32 +117,32 @@ Current built-in tools cover the essential coding-agent surface:
 - `replace_in_file`
 - `run_shell`
 
-## Permission and Safety Model
+## Safety Model
 
-The harness treats permissions as part of the architecture, not as an afterthought.
+The permission model is a core part of the runtime:
 
 - Read-only tools execute directly.
-- Mutating tools require an explicit terminal confirmation.
+- Mutating tools require explicit terminal confirmation.
 - All file paths are resolved relative to the selected workspace root.
 - Path traversal outside the workspace is rejected.
 - Shell execution is non-interactive and timeout-bounded.
 
-This gives the project a clear human-in-the-loop execution model: the model can propose actions, but the host runtime remains the authority for state-changing operations.
+This gives the CLI a clear human-in-the-loop execution model: the agent can propose actions, while the host runtime remains the authority for state-changing operations.
 
-## Component Map
+## Project Layout
 
 | Component | Responsibility |
 | --- | --- |
 | `src/claudecode/cli.py` | REPL entrypoint, slash commands, startup configuration |
-| `src/claudecode/session.py` | conversation state, model calls, tool-call loop, transcript updates |
-| `src/claudecode/tools.py` | workspace tools, shell runtime, path guards, tool registry |
-| `src/claudecode/types.py` | shared runtime types for tools, results, and execution context |
+| `src/claudecode/session.py` | Conversation state, model calls, tool-call loop, transcript updates |
+| `src/claudecode/tools.py` | Workspace tools, shell runtime, path guards, tool registry |
+| `src/claudecode/types.py` | Shared runtime types for tools, results, and execution context |
 | `tests/` | CLI validation, tool behavior, permission flow, and agent-loop tests |
 
-## Demo v2
+## Demo
 
 <p align="center">
-  <img src="./assets/claudecode-py-demo-claude-ui-v2.png" alt="claudecode-py actual runtime screenshot v2" width="100%" />
+  <img src="./assets/claudecode-py-demo-claude-ui-v2.png" alt="claudecode-py runtime screenshot" width="100%" />
 </p>
 
 ```text
@@ -150,34 +158,38 @@ tool read_file
 assistant> ...
 ```
 
-## Why This Design Works
-
-The project is deliberately small, but the architecture scales conceptually:
-
-- the REPL is separated from the query engine
-- the query engine is separated from tool implementations
-- the tool implementations are separated from permission policy
-- the transcript is the single source of truth for model-visible state
-
-That separation makes the codebase easy to extend toward richer agent features such as additional tools, alternate backends, stronger policy layers, or more advanced session orchestration.
-
 ## Installation
 
 ```bash
+git clone https://github.com/sirichen2/claudecode-py.git
 cd claudecode-py
 python3 -m pip install -e .
 ```
 
-Environment variables:
+## Configuration
+
+Required environment variables:
 
 - `OPENAI_API_KEY`
+
+Optional environment variables:
+
 - `OPENAI_BASE_URL`
 - `OPENAI_MODEL`
 
-Run:
+## Usage
 
 ```bash
 claudecode chat --cwd /path/to/project
+```
+
+You can also override the backend at launch time:
+
+```bash
+claudecode chat \
+  --cwd /path/to/project \
+  --model gpt-4.1-mini \
+  --base-url https://api.openai.com/v1
 ```
 
 ## Slash Commands
